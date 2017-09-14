@@ -1,9 +1,9 @@
 # WeRom
 Android Rom
 
-git init
+##git init
 
-git remote add origin https://github.com/yuzhuguan/WeRom.git
+##git remote add origin https://github.com/yuzhuguan/WeRom.git
 
-git push -u origin master
+##git push -u origin master
 
