@@ -7,3 +7,6 @@ Android Rom
 
 ## git push -u origin master
 
+## 截图
+
+![](device-2017-12-16-221949.png)
