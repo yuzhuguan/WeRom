@@ -1,26 +1,15 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
-    }
-}
-
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.protobuf'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "2.1"
+        applicationId 'com.mocity.rom'
 
     }
     buildTypes {
@@ -28,54 +17,10 @@ android {
             minifyEnabled false
         }
     }
-
-    productFlavors {
-        aosp {
-            applicationId 'com.mocity.rom'
-        }
-    }
-    sourceSets {
-        main {
-            res.srcDirs = ['res']
-            java.srcDirs = ['src', 'src_config']
-            manifest.srcFile 'AndroidManifest-common.xml'
-            proto.srcDirs 'protos/'
-        }
-
-        aosp {
-            manifest.srcFile "AndroidManifest.xml"
-        }
-    }
 }
-
-repositories {
-    mavenCentral()
-    jcenter()
-}
-
-final String SUPPORT_LIBS_VERSION = '26.+'
 dependencies {
-    compile "com.android.support:support-v4:${SUPPORT_LIBS_VERSION}"
-    compile "com.android.support:recyclerview-v7:${SUPPORT_LIBS_VERSION}"
-    compile "com.android.support:palette-v7:${SUPPORT_LIBS_VERSION}"
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
     compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
-}
-
-protobuf {
-    // Configure the protoc executable
-    protoc {
-        artifact = 'com.google.protobuf:protoc:3.0.0-alpha-3'
-
-        generateProtoTasks {
-            all().each { task ->
-                task.builtins {
-                    remove java
-                    javanano {
-                        option "java_package=launcher_log.proto|com.mocity.rom.userevent.nano"
-                        option "enum_style=java"
-                    }
-                }
-            }
-        }
-    }
 }
