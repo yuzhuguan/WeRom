@@ -1,6 +1,22 @@
 # WeRom
 Android Rom
 
+## 优先解决gradle jcenter下载速度
+
+```
+    repositories { 
+          jcenter() 
+    }
+```
+
+替换为
+
+```
+    repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    }
+```
+
 ## How to decrease gradle build time
 1. 为什么要优化gradle编译时间，如果一个复杂的项目一天需要编译15次，每次编译2分钟，那么一天
 就需要30分钟去等待编译结果，简直是在浪费生命，高效地工作，才是职业的软件工程师
