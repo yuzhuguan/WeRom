@@ -1,3 +1,8 @@
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
+    }
+}
 apply plugin: 'com.android.application'
 
 android {
@@ -17,10 +22,29 @@ android {
             minifyEnabled false
         }
     }
+
+    lintOptions {
+        // Turns off checks for the issue IDs you specify.
+//        disable 'TypographyFractions','TypographyQuotes'
+        // Turns on checks for the issue IDs you specify. These checks are in
+        // addition to the default lint checks.
+//        enable 'RtlHardcoded','RtlCompat', 'RtlEnabled'
+        // To enable checks for only a subset of issue IDs and ignore all others,
+        // list the issue IDs with the 'check' property instead. This property overrides
+        // any issue IDs you enable or disable using the properties above.
+//        check 'NewApi', 'InlinedApi'
+        // If set to true, turns off analysis progress reporting by lint.
+//        quiet true
+        // if set to true (default), stops the build if errors are found.
+        abortOnError false
+        // if true, only report errors.
+        ignoreWarnings true
+    }
+
 }
 dependencies {
-    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
-    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
+    implementation 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
 }
