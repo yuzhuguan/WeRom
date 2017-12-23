@@ -1,5 +1,5 @@
 # WeRom
-Android Rom
+Android Rom, 目前只包括以原生桌面为base的定制化桌面
 
 ## 优先解决gradle jcenter下载速度
 
